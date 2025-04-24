@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAYUfinances | Finanzas para Jóvenes y Educación Financiera</title>
+    <style>
+        :root {
+            --primary-color: #2E86AB;
+            --secondary-color: #F18F01;
+            --education-color: #3A7D44;
+            --light-color: #F5F5F5;
+            --dark-color: #333333;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .header-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+        }
+        
+        .logo {
+            font-weight: bold;
+        }
+        
+        .tab-container {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .tab {
+            padding: 1rem 2rem;
+            cursor: pointer;
+            background-color: var(--light-color);
+            border: none;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        
+        .tab:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+        
+        .tab:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .tab.active {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+        }
+        
+        .tab.education.active {
+            background-color: var(--education-color);
+        }
+        
+        .content-section {
+            display: none;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px 2rem;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .concept-card {
+            background-color: var(--light-color);
+            padding: 1.2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .concept-card h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        
+        .calculator {
+            background-color: var(--light-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .calculator input, .calculator select, .calculator textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .calculator button {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        .calculator button.secondary {
+            background-color: var(--primary-color);
+        }
+        
+        .results {
+            margin-top: 1.5rem;
+            display: none;
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+            background-color: rgba(46, 134, 171, 0.1);
+            border-radius: 4px;
+        }
+        
+        .template-section {
+            margin-top: 2rem;
+            border-top: 1px solid #eee;
+            padding-top: 1.5rem;
+        }
+        
+        .template-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: rgba(241, 143, 1, 0.1);
+            border-radius: 4px;
+        }
+        
+        .template-item h4 {
+            margin-top: 0;
+            color: var(--secondary-color);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .tab {
+                padding: 0.8rem 1rem;
+                font-size: 1rem;
+            }
+            
+            .concept-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1><span class="logo">PAYUfinances</span></h1>
+            <p class="tagline">Finanzas para Jóvenes y Educación Financiera en Colegios</p>
+        </div>
+    </header>
+    
+    <div class="tab-container">
+        <button class="tab active" onclick="showSection('youth')">Finanzas para Jóvenes</button>
+        <button class="tab education" onclick="showSection('education')">Educación en Colegios</button>
+    </div>
+    
+    <!-- SECCIÓN FINANZAS PARA JÓVENES -->
+    <section id="youth" class="content-section active">
+        <!-- Importancia de manejar el dinero -->
+        <div class="card">
+            <h2>¿Por qué es importante aprender de finanzas desde joven?</h2>
+            <p>Aprender a manejar el dinero desde temprana edad te da ventajas que durarán toda la vida:</p>
+            <ul>
+                <li><strong>Desarrollas hábitos financieros saludables</strong> que se mantendrán en la edad adulta</li>
+                <li><strong>Tomas mejores decisiones</strong> sobre gastos, ahorros e inversiones</li>
+                <li><strong>Aprovechas el poder del interés compuesto</strong> al empezar a ahorrar e invertir temprano</li>
+                <li><strong>Ganas independencia</strong> y control sobre tu futuro económico</li>
+                <li><strong>Evitas deudas innecesarias</strong> y problemas financieros comunes</li>
+            </ul>
+        </div>
+        
+        <!-- Conceptos financieros básicos -->
+        <div class="card">
+            <h2>Conceptos Financieros Clave para Jóvenes</h2>
+            <p>Entender estos conceptos te ayudará a tomar mejores decisiones con tu dinero:</p>
+            
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h4>Activos</h4>
+                    <p><strong>Definición:</strong> Son recursos económicos que generan ingresos o aumentan de valor con el tiempo. Pueden ser físicos (propiedades, equipos) o financieros (inversiones, acciones).</p>
+                    <p><strong>Ejemplos:</strong> Cuentas de ahorro que generan intereses, propiedades en alquiler, negocios propios, inversiones en bolsa.</p>
+                    <p><strong>Impacto futuro:</strong> Construir activos desde joven te permite generar ingresos pasivos y alcanzar libertad financiera más temprano. La ventaja del tiempo hace que pequeños activos puedan crecer significativamente.</p>
+                </div>
+                
+                <div class="concept-card">
+                    <h4>Pasivos</h4>
+                    <p><strong>Definición:</strong> Son obligaciones financieras que representan salidas de dinero. Pueden ser deudas o gastos recurrentes que no generan ingresos.</p>
+                    <p><strong>Ejemplos:</strong> Préstamos para consumo, tarjetas de crédito con saldo, compras a plazos de artículos que pierden valor.</p>
+                    <p><strong>Impacto futuro:</strong> Los pasivos mal gestionados limitan tu capacidad de ahorro e inversión. Muchos jóvenes caen en la "trampa de los pagos mensuales" que consumen gran parte de sus ingresos futuros.</p>
+                </div>
+                
+                <div class="concept-card">
+                    <h4>Gestión de ingresos y gastos</h4>
+                    <p><strong>Definición:</strong> Proceso de registrar, analizar y controlar el dinero que entra y sale periódicamente.</p>
+                    <p><strong>Ejemplos:</strong> Presupuesto mensual, categorización de gastos, análisis de patrones de consumo.</p>
+                    <p><strong>Impacto futuro:</strong> Te ayuda a vivir dentro de tus posibilidades, identificar fugas de dinero y priorizar gastos importantes. Jóvenes que dominan esto evitan el "desconcierto financiero" al independizarse.</p>
+                </div>
+                
+                <div class="concept-card">
+                    <h4>Planificación financiera</h4>
+                    <p><strong>Definición:</strong> Proceso de establecer objetivos económicos y diseñar estrategias para alcanzarlos.</p>
+                    <p><strong>Ejemplos:</strong> Ahorrar para la universidad, plan de compra de primer auto, fondo para emprender.</p>
+                    <p><strong>Impacto futuro:</strong> Jóvenes que planifican alcanzan sus metas más rápido y con menos estrés. Transforma sueños en planes concretos con pasos alcanzables.</p>
+                </div>
+                
+                <div class="concept-card">
+                    <h4>Ahorro e inversión</h4>
+                    <p><strong>Definición:</strong> El ahorro es reservar parte de tus ingresos, mientras que inversión es poner ese dinero a trabajar para generar más dinero.</p>
+                    <p><strong>Ejemplos:</strong> Fondo de emergencia (ahorro), CDT, fondos de inversión, acciones (inversión).</p>
+                    <p><strong>Impacto futuro:</strong> Invertir desde joven multiplica tu dinero gracias al interés compuesto. $100,000 mensuales a 8% anual se convierten en $350 millones en 40 años.</p>
+                </div>
+                
+                <div class="concept-card">
+                    <h4>Gestión de deudas</h4>
+                    <p><strong>Definición:</strong> Estrategia para usar el crédito de forma inteligente, diferenciando deudas buenas (que generan valor) y malas (para consumo inmediato).</p>
+                    <p><strong>Ejemplos:</strong> Préstamo estudiantil (buena), compra de ropa a crédito (mala).</p>
+                    <p><strong>Impacto futuro:</strong> Evita el sobreendeudamiento que afecta a muchos jóvenes. Saber pedir prestado inteligentemente puede acelerar tu crecimiento financiero.</p>
+                </div>
+                
+                <div class="concept-card">
+                    <h4>Decisiones financieras</h4>
+                    <p><strong>Definición:</strong> Proceso de evaluar alternativas considerando costos, beneficios y consecuencias a corto y largo plazo.</p>
+                    <p><strong>Ejemplos:</strong> Elegir entre comprar ahora o ahorrar, decidir si tomar un trabajo o seguir estudiando.</p>
+                    <p><strong>Impacto futuro:</strong> Buenos hábitos de decisión te ahorran problemas y generan oportunidades. Cada decisión financiera es un voto para el futuro que quieres.</p>
+                </div>
+            </div>
+            
+            <div class="template-section">
+                <h3>Plantilla de Definiciones Financieras</h3>
+                <p>Usa esta estructura para analizar cualquier concepto financiero:</p>
+                
+                <div class="template-item">
+                    <h4>1. Definición</h4>
+                    <p>Explicación clara y concisa del concepto en tus propias palabras.</p>
+                </div>
+                
+                <div class="template-item">
+                    <h4>2. Ejemplos concretos</h4>
+                    <p>2-3 situaciones reales donde se aplica este concepto.</p>
+                </div>
+                
+                <div class="template-item">
+                    <h4>3. Impacto en tus finanzas</h4>
+                    <p>Cómo te afecta directamente ahora y en el futuro.</p>
+                </div>
+                
+                <div class="template-item">
+                    <h4>4. Acciones recomendadas</h4>
+                    <p>Qué puedes hacer para aplicar este conocimiento.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Plantillas personalizadas -->
+        <div class="card">
+            <h2>Creador de Plantillas Financieras Personalizadas</h2>
+            <p>Crea tus propias herramientas para manejar mejor tu dinero:</p>
+            
+            <div class="calculator">
+                <h3>Nueva Plantilla</h3>
+                <label for="template-name">Nombre de la plantilla:</label>
+                <input type="text" id="template-name" placeholder="Ej: Presupuesto universitario">
+                
+                <label for="template-type">Tipo de plantilla:</label>
+                <select id="template-type">
+                    <option value="budget">Presupuesto</option>
+                    <option value="savings">Ahorro</option>
+                    <option value="debt">Control de deudas</option>
+                    <option value="investment">Seguimiento de inversiones</option>
+                    <option value="other">Otro</option>
+                </select>
+                
+                <label for="template-description">Descripción/Instrucciones:</label>
+                <textarea id="template-description" rows="3" placeholder="Explica para qué sirve esta plantilla y cómo usarla"></textarea>
+                
+                <label for="template-fields">Campos a incluir (separados por comas):</label>
+                <input type="text" id="template-fields" placeholder="Ej: Ingresos, Gastos fijos, Ahorro, Gastos variables">
+                
+                <button onclick="createTemplate()">Crear Plantilla</button>
+                <button class="secondary" onclick="clearTemplate()">Limpiar</button>
+                
+                <div class="results" id="template-results" style="display: none;">
+                    <h4>Tu plantilla personalizada:</h4>
+                    <div id="template-output"></div>
+                    <button onclick="saveTemplate()">Guardar Plantilla</button>
+                </div>
+            </div>
+            
+            <div class="template-section">
+                <h3>Ejemplos de Plantillas</h3>
+                
+                <div class="template-item">
+                    <h4>Presupuesto Universitario</h4>
+                    <p><strong>Campos:</strong> Ingresos (trabajo, padres, beca), Gastos fijos (matrícula, transporte), Gastos variables (comida, salidas), Ahorro</p>
+                    <p><strong>Uso:</strong> Llenar al inicio de cada mes y revisar semanalmente</p>
+                </div>
+                
+                <div class="template-item">
+                    <h4>Plan de Ahorro para Meta Específica</h4>
+                    <p><strong>Campos:</strong> Meta (ej: viaje, computador), Costo total, Fecha objetivo, Ahorro mensual necesario, Ahorro acumulado</p>
+                    <p><strong>Uso:</strong> Actualizar cada vez que hagas un depósito</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Método 50/30/20 -->
+        <div class="card">
+            <h2>El método 50/30/20 para manejar tu dinero</h2>
+            <p>Una regla simple para organizar tus ingresos:</p>
+            
+            <div class="calculator">
+                <h3>Calculadora 50/30/20</h3>
+                <label for="income">Ingresos mensuales:</label>
+                <input type="number" id="income" placeholder="Ej: 500000">
+                <button onclick="calculateBudget()">Calcular</button>
+                
+                <div class="results" id="budget-results">
+                    <h4>Distribución recomendada:</h4>
+                    <div class="result-item">
+                        <span>Gastos necesarios (50%)</span>
+                        <span id="necessities">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Ahorros (30%)</span>
+                        <span id="savings">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Gastos personales (20%)</span>
+                        <span id="wants">$0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <p><strong>50% Gastos necesarios:</strong> Vivienda, comida, transporte, servicios básicos.</p>
+            <p><strong>30% Ahorros:</strong> Fondo de emergencia, inversiones, metas futuras.</p>
+            <p><strong>20% Gastos personales:</strong> Entretenimiento, salidas, gustos personales.</p>
+        </div>
+        
+        <!-- Ahorro e inversión temprana -->
+        <div class="card">
+            <h2>El poder de ahorrar e invertir joven</h2>
+            <p>Empezar temprano hace una gran diferencia gracias al interés compuesto:</p>
+            
+            <div class="calculator">
+                <h3>Calculadora de ahorros</h3>
+                <label for="monthly">Ahorro mensual:</label>
+                <input type="number" id="monthly" placeholder="Ej: 100000">
+                
+                <label for="years">Años:</label>
+                <input type="number" id="years" placeholder="Ej: 10">
+                
+                <label for="rate">Interés anual (%):</label>
+                <input type="number" id="rate" placeholder="Ej: 8" value="8">
+                
+                <button onclick="calculateSavings()">Calcular</button>
+                
+                <div class="results" id="savings-results">
+                    <div class="result-item">
+                        <span>Total ahorrado:</span>
+                        <span id="total-saved">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Intereses ganados:</span>
+                        <span id="interest-earned">$0</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Valor final:</span>
+                        <span id="final-value">$0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <p><strong>Ejemplo:</strong> Si ahorras $100,000 mensuales desde los 20 años con 8% de interés anual, a los 60 años tendrías aproximadamente $350 millones, de los cuales solo $48 millones serían tus ahorros y $302 millones serían intereses.</p>
+        </div>
+    </section>
+    
+    <!-- SECCIÓN EDUCACIÓN EN COLEGIOS -->
+    <section id="education" class="content-section">
+        <div class="card">
+            <h2>¿Por qué necesitamos educación financiera en los colegios?</h2>
+            <p>La educación financiera temprana beneficia a los estudiantes y al país:</p>
+            
+            <h3>Beneficios para los jóvenes:</h3>
+            <ul>
+                <li>Prepara para manejar sus primeras responsabilidades financieras</li>
+                <li>Reduce el riesgo de sobreendeudamiento en la universidad o primer empleo</li>
+                <li>Fomenta el hábito del ahorro desde temprana edad</li>
+                <li>Ayuda a planificar mejor su futuro educativo y profesional</li>
+            </ul>
+            
+            <h3>Beneficios para Colombia:</h3>
+            <ul>
+                <li>Ciudadanos más responsables financieramente</li>
+                <li>Menos problemas de endeudamiento familiar</li>
+                <li>Más emprendedores preparados</li>
+                <li>Economía más estable a largo plazo</li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h2>La situación actual en Colombia</h2>
+            <ul>
+                <li>Según pruebas PISA, Colombia está entre los últimos países en educación financiera</li>
+                <li>Menos del 20% de los colegios incluyen educación financiera formal</li>
+                <li>El 60% de los jóvenes no sabe cómo funciona un crédito</li>
+                <li>El 45% de los adultos jóvenes tiene deudas problemáticas</li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h2>¿Cómo implementarlo?</h2>
+            <p>Propuesta para integrar educación financiera en colegios:</p>
+            
+            <h3>Contenidos básicos:</h3>
+            <ul>
+                <li><strong>Primaria:</strong> Conceptos básicos de ahorro y valor del dinero</li>
+                <li><strong>Secundaria:</strong> Presupuestos, cuentas bancarias, consumo responsable</li>
+                <li><strong>Media:</strong> Créditos, inversiones, impuestos, sistema pensional</li>
+            </ul>
+            
+            <h3>Metodología:</h3>
+            <ul>
+                <li>Talleres prácticos con situaciones reales</li>
+                <li>Uso de aplicaciones y herramientas digitales</li>
+                <li>Proyectos de emprendimiento escolar</li>
+                <li>Charlas con expertos financieros</li>
+            </ul>
+        </div>
+    </section>
+    
+    <footer>
+        <p>© 2023 PAYUfinances - Todos los derechos reservados</p>
+        <p>Contacto: info@payufinances.co</p>
+    </footer>
+    
+    <script>
+        // Mostrar sección seleccionada
+        function showSection(sectionId) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Desactivar todas las pestañas
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Mostrar sección seleccionada
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Activar pestaña seleccionada
+            event.currentTarget.classList.add('active');
+        }
+        
+        // Formatear dinero
+        function formatMoney(amount) {
+            return '$' + amount.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+        
+        // Calculadora 50/30/20
+        function calculateBudget() {
+            const income = parseFloat(document.getElementById('income').value);
+            
+            if (isNaN(income) || income <= 0) {
+                alert("Por favor ingresa un monto válido");
+                return;
+            }
+            
+            const necessities = income * 0.5;
+            const savings = income * 0.3;
+            const wants = income * 0.2;
+            
+            document.getElementById('necessities').textContent = formatMoney(necessities);
+            document.getElementById('savings').textContent = formatMoney(savings);
+            document.getElementById('wants').textContent = formatMoney(wants);
+            
+            document.getElementById('budget-results').style.display = 'block';
+        }
+        
+        // Calculadora de ahorros
+        function calculateSavings() {
+            const monthly = parseFloat(document.getElementById('monthly').value);
+            const years = parseFloat(document.getElementById('years').value);
+            const rate = parseFloat(document.getElementById('rate').value);
+            
+            if (isNaN(monthly) || isNaN(years) || isNaN(rate) || 
+                monthly <= 0 || years <= 0 || rate <= 0) {
+                alert("Por favor ingresa valores válidos");
+                return;
+            }
+            
+            const monthlyRate = rate / 100 / 12;
+            const months = years * 12;
+            let total = 0;
+            
+            for (let i = 0; i < months; i++) {
+                total = (total + monthly) * (1 + monthlyRate);
+            }
+            
+            const totalSaved = monthly * months;
+            const interest = total - totalSaved;
+            
+            document.getElementById('total-saved').textContent = formatMoney(totalSaved);
+            document.getElementById('interest-earned').textContent = formatMoney(interest);
+            document.getElementById('final-value').textContent = formatMoney(total);
+            
+            document.getElementById('savings-results').style.display = 'block';
+        }
+        
+        // Creador de plantillas
+        function createTemplate() {
+            const name = document.getElementById('template-name').value;
+            const type = document.getElementById('template-type').value;
+            const description = document.getElementById('template-description').value;
+            const fields = document.getElementById('template-fields').value.split(',');
+            
+            if (!name || fields.length === 0) {
+                alert("Por favor completa al menos el nombre y los campos de la plantilla");
+                return;
+            }
+            
+            let templateHTML = `<h3>${name}</h3>`;
+            templateHTML += `<p><strong>Tipo:</strong> ${getTypeName(type)}</p>`;
+            
+            if (description) {
+                templateHTML += `<p><strong>Descripción:</strong> ${description}</p>`;
+            }
+            
+            templateHTML += `<h4>Campos:</h4><ul>`;
+            fields.forEach(field => {
+                if (field.trim()) {
+                    templateHTML += `<li>${field.trim()}</li>`;
+                }
+            });
+            templateHTML += `</ul>`;
+            
+            document.getElementById('template-output').innerHTML = templateHTML;
+            document.getElementById('template-results').style.display = 'block';
+        }
+        
+        function getTypeName(type) {
+            const types = {
+                'budget': 'Presupuesto',
+                'savings': 'Ahorro',
+                'debt': 'Control de deudas',
+                'investment': 'Seguimiento de inversiones',
+                'other': 'Otro'
+            };
+            return types[type] || 'Otro';
+        }
+        
+        function clearTemplate() {
+            document.getElementById('template-name').value = '';
+            document.getElementById('template-type').value = 'budget';
+            document.getElementById('template-description').value = '';
+            document.getElementById('template-fields').value = '';
+            document.getElementById('template-results').style.display = 'none';
+        }
+        
+        function saveTemplate() {
+            alert("Plantilla creada correctamente. En una implementación real, aquí se guardaría en una base de datos o se descargaría como archivo.");
+            // Aquí iría el código para guardar la plantilla
+        }
+    </script>
+</body>
+</html>
