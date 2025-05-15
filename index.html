@@ -320,31 +320,37 @@
             
             <div class="calculator">
                 <h3>Calculadora 50/30/20</h3>
-                <label for="income">Ingresos mensuales:</label>
-                <input type="number" id="income" placeholder="Ej: 500000">
-                <button onclick="calculateBudget()">Calcular</button>
-                
-                <div class="results" id="budget-results">
-                    <h4>Distribución recomendada:</h4>
-                    <div class="result-item">
-                        <span>Gastos necesarios (50%)</span>
-                        <span id="necessities">$0</span>
-                    </div>
-                    <div class="result-item">
-                        <span>Gastos personales (30%)</span>
-                        <span id="savings">$0</span>
-                    </div>
-                    <div class="result-item">
-                        <span>Ahorros (20%)</span>
-                        <span id="wants">$0</span>
-                    </div>
-                </div>
-            </div>
-            
-            <p><strong>50% Gastos necesarios:</strong> Vivienda, comida, transporte, servicios básicos.</p>
-            <p><strong>30% Gastos personales:</strong> Entretenimiento, salidas, gustos personales.</p>
-            <p><strong>20% Ahorros:</strong> Fondo de emergencia, inversiones, metas futuras.</p>
-        </div>
+<p>Esta calculadora te ayuda a distribuir tus ingresos según el método 50/30/20, una regla básica de presupuestación. Es especialmente útil cuando:</p>
+<ul>
+    <li>Recibes tu primer sueldo y no sabes cómo organizar tus finanzas</li>
+    <li>Quieres establecer un plan de ahorro realista</li>
+    <li>Necesitas visualizar cómo se distribuyen tus gastos mensuales</li>
+</ul>
+
+<label for="income">Ingresos mensuales:</label>
+<input type="number" id="income" placeholder="Ej: 500000">
+<button onclick="calculateBudget()">Calcular</button>
+
+<div class="results" id="budget-results">
+    <h4>Distribución recomendada:</h4>
+    <div class="result-item">
+        <span>Gastos necesarios (50%)</span>
+        <span id="necessities">$0</span>
+    </div>
+    <div class="result-item">
+        <span>Gastos personales (30%)</span>
+        <span id="savings">$0</span>
+    </div>
+    <div class="result-item">
+        <span>Ahorros (20%)</span>
+        <span id="wants">$0</span>
+    </div>
+</div>
+
+<p><strong>50% Gastos necesarios:</strong> Vivienda, comida, transporte, servicios básicos.</p>
+<p><strong>30% Gastos personales:</strong> Entretenimiento, salidas, gustos personales.</p>
+<p><strong>20% Ahorros:</strong> Fondo de emergencia, inversiones, metas futuras.</p>
+</div>
         
         <!-- Ahorro e inversión temprana -->
         <div class="card">
